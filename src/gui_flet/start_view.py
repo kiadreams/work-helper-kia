@@ -6,8 +6,9 @@ from flet import View, control
 
 class StartView(ft.View):
     def __init__(self, page: ft.Page) -> None:
+        super().__init__(route="/start_view")
         self.app_page = page
-        self.route = "/start_view"
+        # self.route = "/start_view"
         self._setup_view()
 
     def _setup_view(self) -> None:
