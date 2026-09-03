@@ -4,4 +4,4 @@ import flet as ft
 from src.gui_flet.main_window import MainWindow
 
 
-ft.run(lambda page: MainWindow(page))
+ft.run(MainWindow, view=ft.AppView.FLET_APP_HIDDEN)

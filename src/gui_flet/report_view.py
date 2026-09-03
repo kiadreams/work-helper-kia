@@ -1,7 +1,10 @@
 from __future__ import annotations
 
 import flet as ft
-from gui_flet.route_data import AppRoute
+
+from src.gui_flet.route_data import AppRoute
+from src.gui_flet.view_components.common import BottomBar, TopAppBar
+
 
 class ReportView(ft.View):
     def __init__(self) -> None:
@@ -10,14 +13,18 @@ class ReportView(ft.View):
         self._setup_view()
 
     def _setup_view(self) -> None:
-        self.controls = [
-            ft.Container(
-                content=ft.Column([
-                    ft.Button("Назад", on_click=self._click_come_back_button),
-                ])
-            )
-        ]
+        self.appbar = self._add_top_app_bar()
+        self.bottom_appbar = self._add_bottom_bar()
 
     def _click_come_back_button(self) -> None:
-        print("come back")
         self.page.navigate(AppRoute.MAIN_WINDOW)
+
+    @staticmethod
+    def _add_bottom_bar() -> ft.BottomBar:
+        bottom_bar = BottomBar()
+        return bottom_bar
+
+    @staticmethod
+    def _add_top_app_bar() -> ft.AppBar:
+        app_bar = TopAppBar()
+        return app_bar
