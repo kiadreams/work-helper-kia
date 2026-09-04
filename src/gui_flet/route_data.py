@@ -4,7 +4,7 @@ from enum import StrEnum
 
 
 class AppRoute(StrEnum):
-    MAIN_WINDOW = "/"
+    MAIN_MENU_VIEW = "/"
     EMPLOYEE_VIEW = "/employee_view"
     REPORT_VIEW = "/report_view"
     PROTOCOL_VIEW = "/protocol_view"
