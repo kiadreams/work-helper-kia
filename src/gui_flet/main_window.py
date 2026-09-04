@@ -30,7 +30,8 @@ class MainWindow:
         self.page.window.visible = True
 
     def _route_change(self, event: ft.RouteChangeEvent | None = None) -> None:
-        route = AppRoute.MAIN_WINDOW
+        print("вызвали route_change")
+        route = AppRoute.MAIN_WINDOW.value
         if event:
             route = event.route
         view_builder = self._VIEWS.get(route, self)
@@ -40,11 +41,18 @@ class MainWindow:
             self.page.views.append(existed_view)
         else:
             self.page.views.append(view_builder())
-        self.page.update()
+        print([view.route for view in self.page.views], f"{self.page.route=}")
 
-    def _go_back(self) -> None:
-        print("вызвали")
-        self._route_change()
+    def _go_back(self, event) -> None:
+        print("вызвали go_back")
+        # if len(self.page.views) > 1:
+        #     last_view = self.page.views.pop(-1)
+        #     penultimate_view = self.page.views.pop(-1)
+        #     self.page.views.extend([last_view, penultimate_view])
+        #     self.page.route = penultimate_view.route
+        #     # self.page.update()
+            print([view.route for view in self.page.views], f"{self.page.route=}")
+
 
     def _find_existed_view(self, rote: str) -> ft.View | None:
         existed_views = None

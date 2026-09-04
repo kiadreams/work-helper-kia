@@ -9,7 +9,7 @@ from src.gui_flet.view_components.common import BottomBar, TopAppBar
 class EmployeeView(ft.View):
     def __init__(self) -> None:
         super().__init__()
-        self.route = AppRoute.EMPLOYEE_VIEW
+        self.route = AppRoute.EMPLOYEE_VIEW.value
         self._setup_view()
 
     def _setup_view(self) -> None:
