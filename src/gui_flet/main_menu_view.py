@@ -4,21 +4,22 @@ from typing import Callable, Any
 
 import flet as ft
 
-from src.gui_flet.route_data import AppRoute
 from src.gui_flet.common_view_component import BottomBar, TopAppBar
+from src.gui_flet.route_data import AppRoute
 
 
 class MainMenuView(ft.View):
     def __init__(self) -> None:
         super().__init__(route=AppRoute.MAIN_MENU_VIEW.value)
-        self._setup_view()
-
-    def _setup_view(self) -> None:
         self.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-        self.vertical_alignment = ft.MainAxisAlignment.CENTER
+        self.vertical_alignment = ft.MainAxisAlignment.START
         self.appbar = self._add_top_app_bar()
-        self._create_main_menu_button()
         self.bottom_appbar = self._add_bottom_bar()
+
+        self.controls.append(self._add_company_name_area())
+        self.controls.append(ft.Container(expand=True))
+        self.controls.append(self._add_main_menu_button())
+        self.controls.append(ft.Container(expand=True))
 
     async def _click_employee_button(self, event: ft.Event) -> None:
         await self.page.push_route(AppRoute.EMPLOYEE_VIEW.value)
@@ -29,12 +30,19 @@ class MainMenuView(ft.View):
     async def _click_protocol_button(self, event: ft.Event) -> None:
         await self.page.push_route(AppRoute.PROTOCOL_VIEW.value)
 
-    def _create_main_menu_button(self) -> None:
+    def _add_main_menu_button(self) -> ft.Container:
         container = MainMenuContainer(border_radius=15)
         container.create_button_name("ПЕРСОНАЛ", self._click_employee_button)
         container.create_button_name("ОТЧЕТЫ", self._click_report_button)
         container.create_button_name("ПРОТОКОЛЫ", self._click_protocol_button)
-        self.controls = [container]
+        return container
+
+    @staticmethod
+    def _add_company_name_area() -> ft.Row:
+        company_area = CompanyNameArea()
+        company_area.set_list_item("Кубанское ПМЭС", "1")
+        company_area.set_list_item("Ростовское ПМЭС", "2")
+        return company_area
 
     @staticmethod
     def _add_bottom_bar() -> ft.BottomBar:
@@ -59,13 +67,10 @@ class MainMenuContainer(ft.Container):
         self.height = height
         self.border_radius = border_radius
         self.padding = padding
-        # self.border
         self.column = self.create_column()
-        self._setup_view()
-
-    def _setup_view(self) -> None:
-        self.content = self.column
         self.border = ft.Border.all(2, ft.Colors.BLUE_GREY_200)
+
+        self.content = self.column
 
     @staticmethod
     def create_column() -> ft.Column:
@@ -83,7 +88,7 @@ class MainMenuContainer(ft.Container):
         button = ft.Button(
             content=ft.Text(
                 value=name_value,
-                weight=ft.FontWeight.NORMAL,
+                weight=ft.FontWeight.BOLD,
             ),
             on_click=on_click_method,
             style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=5)),
@@ -93,5 +98,19 @@ class MainMenuContainer(ft.Container):
 
 
 class CompanyNameArea(ft.Row):
-    def __init__(self, name: str) -> None:
+    def __init__(self) -> None:
         super().__init__()
+        self._company_list = ft.Dropdown(
+            width=220,
+            text="Выберите компанию",
+            value="1",
+            label="Компания"
+        )
+        self.alignment = ft.MainAxisAlignment.END
+        self.run_alignment = ft.MainAxisAlignment.END
+
+        self.controls.append(self._company_list)
+
+    def set_list_item(self, company_name: str, company_id: str) -> None:
+        list_item = ft.DropdownOption(text=company_name, key=company_id)
+        self._company_list.options.append(list_item)

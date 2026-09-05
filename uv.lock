@@ -943,3 +943,6 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [{ name = "flet", extras = ["all"], specifier = ">=0.86.5" }]
+
+[package.metadata.requires-dev]
+dev = []
