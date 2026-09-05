@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import flet as ft
 
-from gui_flet.route_data import AppRoute
-from gui_flet.common_view_component import BottomBar, TopAppBar
+from src.gui_flet.route_data import AppRoute
+from src.gui_flet.common_view_component import BottomBar, TopAppBar
 
 
 class ProtocolView(ft.View):

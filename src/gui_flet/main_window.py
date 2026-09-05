@@ -2,11 +2,11 @@ from __future__ import annotations
 
 import flet as ft
 
-from gui_flet.main_menu_view import MainMenuView
-from gui_flet.route_data import AppRoute
-from gui_flet.employee_view import EmployeeView
-from gui_flet.report_view import ReportView
-from gui_flet.protocol_view import ProtocolView
+from src.gui_flet.main_menu_view import MainMenuView
+from src.gui_flet.route_data import AppRoute
+from src.gui_flet.employee_view import EmployeeView
+from src.gui_flet.report_view import ReportView
+from src.gui_flet.protocol_view import ProtocolView
 
 
 class MainWindow:

@@ -1,9 +1,11 @@
 from __future__ import annotations
 
+from typing import Callable, Any
+
 import flet as ft
 
-from gui_flet.route_data import AppRoute
-from gui_flet.common_view_component import BottomBar, TopAppBar
+from src.gui_flet.route_data import AppRoute
+from src.gui_flet.common_view_component import BottomBar, TopAppBar
 
 
 class MainMenuView(ft.View):
@@ -28,31 +30,11 @@ class MainMenuView(ft.View):
         await self.page.push_route(AppRoute.PROTOCOL_VIEW.value)
 
     def _create_main_menu_button(self) -> None:
-        self.controls = [
-            ft.Container(
-                width=500,
-                height=200,
-                border=ft.Border.all(2, ft.Colors.BLUE_GREY_200),
-                border_radius=10,
-                padding=5,
-                content=ft.Column([
-                    ft.Button(content=ft.Text("Персонал"),
-                              style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=5)),
-                              expand=True,
-                              on_click=self._click_employee_button),
-                    ft.Button(content=ft.Text("Отчеты"),
-                              style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=5)),
-                              expand=True,
-                              on_click=self._click_report_button),
-                    ft.Button(content=ft.Text("Протоколы"),
-                              style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=5)),
-                              expand=True,
-                              on_click=self._click_protocol_button),
-                ],
-                    horizontal_alignment=ft.CrossAxisAlignment.STRETCH,
-                    spacing=5),
-            )
-        ]
+        container = MainMenuContainer(border_radius=15)
+        container.create_button_name("ПЕРСОНАЛ", self._click_employee_button)
+        container.create_button_name("ОТЧЕТЫ", self._click_report_button)
+        container.create_button_name("ПРОТОКОЛЫ", self._click_protocol_button)
+        self.controls = [container]
 
     @staticmethod
     def _add_bottom_bar() -> ft.BottomBar:
@@ -64,3 +46,52 @@ class MainMenuView(ft.View):
     def _add_top_app_bar() -> ft.AppBar:
         app_bar = TopAppBar()
         return app_bar
+
+
+class MainMenuContainer(ft.Container):
+    def __init__(self,
+                 width: int = 500,
+                 height: int = 200,
+                 border_radius: int = 10,
+                 padding: int = 5) -> None:
+        super().__init__()
+        self.width = width
+        self.height = height
+        self.border_radius = border_radius
+        self.padding = padding
+        # self.border
+        self.column = self.create_column()
+        self._setup_view()
+
+    def _setup_view(self) -> None:
+        self.content = self.column
+        self.border = ft.Border.all(2, ft.Colors.BLUE_GREY_200)
+
+    @staticmethod
+    def create_column() -> ft.Column:
+        column = ft.Column(
+            horizontal_alignment=ft.CrossAxisAlignment.STRETCH,
+            spacing=5,
+        )
+        return column
+
+    def create_button_name(
+            self,
+            name_value: str,
+            on_click_method: Callable[[ft.Event], Any]
+    ) -> None:
+        button = ft.Button(
+            content=ft.Text(
+                value=name_value,
+                weight=ft.FontWeight.NORMAL,
+            ),
+            on_click=on_click_method,
+            style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=5)),
+            expand=True,
+        )
+        self.column.controls.append(button)
+
+
+class CompanyNameArea(ft.Row):
+    def __init__(self, name: str) -> None:
+        super().__init__()

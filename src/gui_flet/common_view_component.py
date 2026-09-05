@@ -1,9 +1,8 @@
 from __future__ import annotations
 
 import flet as ft
-from flet import IconButton
 
-from gui_flet.route_data import AppRoute
+from src.gui_flet.route_data import AppRoute
 
 
 class BottomBar(ft.BottomAppBar):
@@ -65,7 +64,6 @@ class TopAppBar(ft.AppBar):
 
     def did_mount(self) -> None:
         super().did_mount()
-        print("will unmount выполнился")
         if len(self.page.views) > 1:
             self.leading_width = 110
             self.leading = ft.Row(

@@ -3,7 +3,7 @@ from __future__ import annotations
 import flet as ft
 
 from src.gui_flet.route_data import AppRoute
-from gui_flet.common_view_component import BottomBar, TopAppBar
+from src.gui_flet.common_view_component import BottomBar, TopAppBar
 
 
 class ReportView(ft.View):
