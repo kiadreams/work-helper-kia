@@ -4,17 +4,19 @@ from typing import Callable, Any
 
 import flet as ft
 
-from src.gui_flet.common_view_component import BottomBar, TopAppBar
+# from src.gui_flet.common_component import BaseViewComponent
 from src.gui_flet.route_data import AppRoute
 
 
 class MainMenuView(ft.View):
-    def __init__(self) -> None:
-        super().__init__(route=AppRoute.MAIN_MENU_VIEW.value)
+    def __init__(self, route: str) -> None:
+        super().__init__()
+        # BaseViewComponent.__init__(self, page, route)
+        # self.app_page = page
+        self.route = route
         self.horizontal_alignment = ft.CrossAxisAlignment.CENTER
         self.vertical_alignment = ft.MainAxisAlignment.START
-        self.appbar = self._add_top_app_bar()
-        self.bottom_appbar = self._add_bottom_bar()
+        # self.app_bottom_appbar.home_button.visible = False
 
         self.controls.append(self._add_company_name_area())
         self.controls.append(ft.Container(expand=True))
@@ -43,17 +45,6 @@ class MainMenuView(ft.View):
         company_area.set_list_item("Кубанское ПМЭС", "1")
         company_area.set_list_item("Ростовское ПМЭС", "2")
         return company_area
-
-    @staticmethod
-    def _add_bottom_bar() -> ft.BottomBar:
-        bottom_bar = BottomBar()
-        bottom_bar.home_button.visible = False
-        return bottom_bar
-
-    @staticmethod
-    def _add_top_app_bar() -> ft.AppBar:
-        app_bar = TopAppBar()
-        return app_bar
 
 
 class MainMenuContainer(ft.Container):
