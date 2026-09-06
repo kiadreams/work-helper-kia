@@ -4,19 +4,16 @@ from typing import Callable, Any
 
 import flet as ft
 
-# from src.gui_flet.common_component import BaseViewComponent
+from src.gui_flet.common_component import BaseViewComponent
 from src.gui_flet.route_data import AppRoute
 
 
-class MainMenuView(ft.View):
-    def __init__(self, route: str) -> None:
-        super().__init__()
-        # BaseViewComponent.__init__(self, page, route)
-        # self.app_page = page
-        self.route = route
+class MainMenuView(BaseViewComponent):
+    def __init__(self, page: ft.Page, route: str) -> None:
+        super().__init__(page, route)
         self.horizontal_alignment = ft.CrossAxisAlignment.CENTER
         self.vertical_alignment = ft.MainAxisAlignment.START
-        # self.app_bottom_appbar.home_button.visible = False
+        self.app_bottom_appbar.home_button.visible = False
 
         self.controls.append(self._add_company_name_area())
         self.controls.append(ft.Container(expand=True))
