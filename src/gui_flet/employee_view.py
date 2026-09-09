@@ -79,7 +79,6 @@ class EmployeeDataItem(ft.Container):
 
 
 class EmployeePhoto(ft.Container):
-
     def __init__(self, file_picker: ft.FilePicker, photo_size: int) -> None:
         super().__init__()
         self._file_picker = file_picker
@@ -92,7 +91,7 @@ class EmployeePhoto(ft.Container):
             height=photo_size,
             fit=ft.BoxFit.COVER,
             border_radius=photo_size // 10,
-            visible=False
+            visible=False,
         )
         self.photo_area_stack = ft.Stack(
             width=photo_size,
@@ -127,7 +126,9 @@ class EmployeePhoto(ft.Container):
                 self.employee_photo.visible = True
                 self.employee_icon.visible = False
                 if len(self.context_menu.primary_items) < 2:
-                    self.context_menu.primary_items.append(self._delete_photo_menu_item())
+                    self.context_menu.primary_items.append(
+                        self._delete_photo_menu_item()
+                    )
 
     def _delete_photo(self, event: ft.Event) -> None:
         self.last_photo_path = ""
@@ -143,7 +144,7 @@ class EmployeePhoto(ft.Container):
             alignment=ft.Alignment.CENTER,
             border=ft.Border.all(width=2, color=ft.Colors.GREY_200),
             border_radius=self.photo_size // 10,
-            tooltip="Выбрать фото"
+            tooltip="Выбрать фото",
         )
         icon_container.content = ft.Icon(icon=ft.Icons.PERSON_ADD)
         return icon_container
@@ -152,7 +153,7 @@ class EmployeePhoto(ft.Container):
         item_menu = ft.PopupMenuItem(
             content="Выбрать фотографию",
             icon=ft.Icons.ACCOUNT_BOX,
-            on_click=self._select_photo
+            on_click=self._select_photo,
         )
         return item_menu
 
@@ -160,7 +161,7 @@ class EmployeePhoto(ft.Container):
         item_menu = ft.PopupMenuItem(
             content="Удалить фотографию",
             icon=ft.Icons.DELETE,
-            on_click=self._delete_photo
+            on_click=self._delete_photo,
         )
         return item_menu
 

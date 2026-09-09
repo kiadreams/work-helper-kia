@@ -17,7 +17,6 @@ class BaseViewComponent(ft.View):
 
 
 class AppBottomAppBar(ft.BottomAppBar):
-
     def __init__(self):
         super().__init__()
         self.home_button = self._create_home_button()
@@ -80,7 +79,7 @@ class AppAppBar(ft.AppBar):
             self.leading = ft.Row(
                 controls=[
                     self._create_arrow_back_button(),
-                    self._create_minimize_button()
+                    self._create_minimize_button(),
                 ],
                 spacing=0,
             )
@@ -89,10 +88,7 @@ class AppAppBar(ft.AppBar):
         self.page.update()
 
     def _add_action_button(self) -> list[ft.Control]:
-        return [
-            self._create_maximize_button(),
-            self._create_exit_button()
-        ]
+        return [self._create_maximize_button(), self._create_exit_button()]
 
     def _create_arrow_back_button(self) -> ft.IconButton:
         arrow_back_button = ft.IconButton(

@@ -45,11 +45,13 @@ class MainMenuView(BaseViewComponent):
 
 
 class MainMenuContainer(ft.Container):
-    def __init__(self,
-                 width: int = 500,
-                 height: int = 200,
-                 border_radius: int = 10,
-                 padding: int = 5) -> None:
+    def __init__(
+        self,
+        width: int = 500,
+        height: int = 200,
+        border_radius: int = 10,
+        padding: int = 5,
+    ) -> None:
         super().__init__()
         self.width = width
         self.height = height
@@ -69,9 +71,7 @@ class MainMenuContainer(ft.Container):
         return column
 
     def create_button_name(
-            self,
-            name_value: str,
-            on_click_method: Callable[[ft.Event], Any]
+        self, name_value: str, on_click_method: Callable[[ft.Event], Any]
     ) -> None:
         button = ft.Button(
             content=ft.Text(
@@ -89,10 +89,7 @@ class CompanyNameArea(ft.Row):
     def __init__(self) -> None:
         super().__init__()
         self._company_list = ft.Dropdown(
-            width=220,
-            text="Выберите компанию",
-            value="1",
-            label="Компания"
+            width=220, text="Выберите компанию", value="1", label="Компания"
         )
         self.alignment = ft.MainAxisAlignment.END
         self.run_alignment = ft.MainAxisAlignment.END

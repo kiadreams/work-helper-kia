@@ -19,6 +19,3 @@ ft.run(
     main=MainWindow,
     view=ft.AppView.FLET_APP_HIDDEN,
 )
-
-
-
