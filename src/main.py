@@ -4,7 +4,7 @@ import flet as ft
 from src.gui_flet.main_window import MainWindow
 
 
-def setup_window(page: ft.Page):
+def setup_window(page: ft.Page) -> None:
     page.window.width = 1024
     page.window.height = 800
     page.title = "Рабочий помощник КИА"
