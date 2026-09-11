@@ -11,7 +11,7 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(
         env_file=Path(__file__).resolve().parent.parent / ".env",
-        env_file_encoding="utf-8"
+        env_file_encoding="utf-8",
     )
 
     @property
@@ -19,9 +19,9 @@ class Settings(BaseSettings):
         return Path(__file__).resolve().parent
 
 
-settings = Settings()
+settings = Settings()  # type: ignore[call-arg]
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(settings.project_dir)
     print(settings.database_url)
     print(settings.db_file_name)

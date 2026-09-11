@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import flet as ft
 
-from gui_flet.ui_protocols.entities import EmployeeUIEntity
+from src.gui_flet.ui_protocols.entities import EmployeeUIEntity
 from src.gui_flet.common_component import BaseViewComponent
 
 

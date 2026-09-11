@@ -1,7 +1,12 @@
 from __future__ import annotations
+
 import flet as ft
 
+from src.database.db_manager import DatabaseManager
 from src.gui_flet.main_window import MainWindow
+from src.settings import settings
+
+app_db = DatabaseManager(settings)
 
 
 def setup_window(page: ft.Page) -> None:
