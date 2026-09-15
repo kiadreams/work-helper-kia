@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import flet as ft
 
-from src.gui_flet.ui_protocols.entities import EmployeeUIEntity
-from src.gui_flet.common_component import BaseViewComponent
+from src.ui_flet.ui_protocols.entities import EmployeeUIEntity
+from src.ui_flet.common_component import BaseViewComponent
 
 
 class EmployeeView(BaseViewComponent):

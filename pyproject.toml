@@ -5,7 +5,6 @@ requires-python = ">=3.14"
 dependencies = [
     "aiosqlite>=0.22.1",
     "alembic==1.20.0",
-    "dishka>=1.10.1",
     "flet[all]>=0.86.5",
     "pydantic-settings>=2.15.0",
     "sqlalchemy[asyncio]>=2.0.52",

@@ -1,13 +1,14 @@
 from __future__ import annotations
-import asyncio
 
 import flet as ft
-from dishka import Scope, make_async_container
 
-from src.gui_flet.main_window import MainWindow
-from src.di.providers import AppProvider, SessionProvider
+from src.database.db_manager import DatabaseManager
+from src.ui_flet.main_window import MainWindow
+from src.settings import settings
+from src.ui_flet.main_menu_view import CompanyNameArea, CompanyDropdownList
+from viewmodel.company_viewmodel import CompanyListViewModel
 
-container = make_async_container(AppProvider(), SessionProvider())
+app_db = DatabaseManager(settings)
 
 
 def setup_window(page: ft.Page) -> None:
@@ -20,54 +21,49 @@ def setup_window(page: ft.Page) -> None:
         page.run_task(ft.BrowserContextMenu().disable)
 
 
-async def main_entrypoint(page: ft.Page) -> None:
-    async with container(
-        scope=Scope.SESSION, context={ft.Page: page}
-    ) as session_container:
-        await session_container.get(MainWindow)
-        alive = asyncio.Event()
-        page.on_close = lambda e: alive.set()
-        await alive.wait()
+# def main_entrypoint(page: ft.Page) -> None:
+#     # MainWindow(page, app_db)
+#     page.render(CompanyNameArea)
+
+
+def main_entry_component(page: ft.Page) -> None:
+    companies = CompanyListViewModel()
+    company_list = CompanyDropdownList
+    page.window.visible = True
+    page.render(company_list, companies)
 
 
 ft.run(
     before_main=setup_window,
-    main=main_entrypoint,
+    # main=main_entrypoint,
+    main=main_entry_component,
     view=ft.AppView.FLET_APP_HIDDEN,
 )
-
+#
+#
+#
 # # Проверка работы БАЗЫ ДАННЫХ В АСИНХРОННОМ РЕЖИМЕ
 # import asyncio
 #
-# from sqlmodel import select
-#
-# from src.domain.models import Employee
 # from src.database.db_manager import DatabaseManager
+# from src.repository.company_repo import CompanyRepository
 # from src.settings import settings
+# # from src.assets.db_test_data.db_table_data import test_employees, test_companies
 #
 # app_db = DatabaseManager(settings)
-# app_sessionmaker = app_db.connection
-#
-#
-# async def insert_employee() -> None:
-#     async with app_sessionmaker() as conn:
-#         employee = Employee(name="Igor", last_name="Igor")
-#         conn.add(employee)
-#         await conn.commit()
-#
-#
-# async def show_all_employees() -> None:
-#     async with app_sessionmaker() as conn:
-#         stmt = select(Employee).order_by(Employee.last_name)
-#         results = await conn.exec(stmt)
-#         employees = results.all()
-#         for employee in employees:
-#             print(employee.name)
+# repo = CompanyRepository(app_db)
 #
 #
 # async def main() -> None:
-#     await insert_employee()
-#     await show_all_employees()
+#     # await repo.add_employees(test_employees)
+#     # await repo.add_companies(test_companies)
+#     all_employees = await repo.get_all_employees()
+#     all_companies = await repo.get_all_companies()
+#     for employee in all_employees:
+#         print(employee)
+#     print()
+#     for company in all_companies:
+#         print(company)
 #
 #
 # asyncio.run(main())

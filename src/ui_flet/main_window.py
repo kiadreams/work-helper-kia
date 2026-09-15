@@ -3,14 +3,14 @@ from typing import TYPE_CHECKING
 
 import flet as ft
 
-from src.gui_flet.employee_view import EmployeeView
-from src.gui_flet.main_menu_view import MainMenuView
-from src.gui_flet.protocol_view import ProtocolView
-from src.gui_flet.report_view import ReportView
-from src.gui_flet.route_data import AppRoute
+from src.ui_flet.employee_view import EmployeeView
+from src.ui_flet.main_menu_view import MainMenuView
+from src.ui_flet.protocol_view import ProtocolView
+from src.ui_flet.report_view import ReportView
+from src.ui_flet.route_data import AppRoute
 
 if TYPE_CHECKING:
-    from dishka import AsyncContainer
+    from src.database.db_manager import DatabaseManager
 
 
 class MainWindow:
@@ -24,10 +24,10 @@ class MainWindow:
     def __init__(
         self,
         page: ft.Page,
-        session_container: AsyncContainer,
+        app_db: DatabaseManager,
     ) -> None:
         self.page = page
-        self.container = session_container
+        self.db = app_db
         self.page.on_route_change = self._route_change
         self.page.on_view_pop = self._go_back
         self.page.views.clear()

@@ -4,8 +4,9 @@ from typing import Callable, Any
 
 import flet as ft
 
-from src.gui_flet.common_component import BaseViewComponent
-from src.gui_flet.route_data import AppRoute
+from src.ui_flet.common_component import BaseViewComponent
+from src.ui_flet.route_data import AppRoute
+from viewmodel.company_viewmodel import CompanyListViewModel
 
 
 class MainMenuView(BaseViewComponent):
@@ -46,11 +47,11 @@ class MainMenuView(BaseViewComponent):
 
 class MainMenuContainer(ft.Container):
     def __init__(
-        self,
-        width: int = 500,
-        height: int = 200,
-        border_radius: int = 10,
-        padding: int = 5,
+            self,
+            width: int = 500,
+            height: int = 200,
+            border_radius: int = 10,
+            padding: int = 5,
     ) -> None:
         super().__init__()
         self.width = width
@@ -71,7 +72,7 @@ class MainMenuContainer(ft.Container):
         return column
 
     def create_button_name(
-        self, name_value: str, on_click_method: Callable[[ft.Event], Any]
+            self, name_value: str, on_click_method: Callable[[ft.Event], Any]
     ) -> None:
         button = ft.Button(
             content=ft.Text(
@@ -99,3 +100,37 @@ class CompanyNameArea(ft.Row):
     def set_list_item(self, company_name: str, company_id: str) -> None:
         list_item = ft.DropdownOption(text=company_name, key=company_id)
         self._company_list.options.append(list_item)
+
+
+@ft.component
+def CompanyDropdownList(
+        company_list: CompanyListViewModel,
+) -> ft.Control:
+    def handle_change(event: ft.Event) -> None:
+        selected_id = int(event.control.value)
+        company_list.selected_company = next(
+            (company for company in company_list.companies if company.id == selected_id),
+            None,
+        )
+
+    dropdown_options = [
+        ft.DropdownOption(
+            key=str(company.id),
+            text=company.name,
+        )
+        for company in company_list.companies
+    ]
+    row = ft.Row(
+        alignment=ft.MainAxisAlignment.END,
+        run_alignment=ft.MainAxisAlignment.END,
+    )
+    company_dropdown_list = ft.Dropdown(
+        label="Выбери компанию",
+        value=str(company_list.selected_company.id) if company_list.selected_company else None,
+        options=dropdown_options,
+        on_select=handle_change,
+        width=220,
+    )
+    row.controls.append(company_dropdown_list)
+
+    return row

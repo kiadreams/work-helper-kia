@@ -1,0 +1,20 @@
+from __future__ import annotations
+
+from typing import Protocol, TYPE_CHECKING, Sequence
+
+if TYPE_CHECKING:
+    from src.core.domain import EmployeeDomain, CompanyDomain
+
+
+class CompanyRepoProtocol(Protocol):
+    async def add_employee(self, employee: EmployeeDomain) -> None: ...
+
+    async def add_employees(self, employees: list[EmployeeDomain]) -> None: ...
+
+    async def get_all_employees(self) -> Sequence[EmployeeDomain]: ...
+
+    async def add_company(self, company: CompanyDomain) -> None: ...
+
+    async def add_companies(self, companies: list[CompanyDomain]) -> None: ...
+
+    async def get_all_companies(self) -> Sequence[CompanyDomain]: ...

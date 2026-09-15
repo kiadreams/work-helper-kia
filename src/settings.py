@@ -18,7 +18,7 @@ class Settings(BaseSettings):
         return Path(__file__).resolve().parent
 
 
-# settings = Settings()  # type: ignore[call-arg]
+settings = Settings()  # type: ignore[call-arg]
 
 # if __name__ == "__main__":
 #     print(settings.project_dir)
