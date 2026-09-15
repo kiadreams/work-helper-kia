@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import TYPE_CHECKING
 
 import flet as ft
 
@@ -7,6 +8,9 @@ from src.gui_flet.main_menu_view import MainMenuView
 from src.gui_flet.protocol_view import ProtocolView
 from src.gui_flet.report_view import ReportView
 from src.gui_flet.route_data import AppRoute
+
+if TYPE_CHECKING:
+    from dishka import AsyncContainer
 
 
 class MainWindow:
@@ -17,8 +21,13 @@ class MainWindow:
         AppRoute.PROTOCOL_VIEW.value: ProtocolView,
     }
 
-    def __init__(self, page: ft.Page) -> None:
+    def __init__(
+        self,
+        page: ft.Page,
+        session_container: AsyncContainer,
+    ) -> None:
         self.page = page
+        self.container = session_container
         self.page.on_route_change = self._route_change
         self.page.on_view_pop = self._go_back
         self.page.views.clear()

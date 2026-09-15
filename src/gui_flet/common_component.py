@@ -30,8 +30,8 @@ class AppBottomAppBar(ft.BottomAppBar):
             controls=[self.home_button, self.settings_button, self.exit_button],
         )
 
-    def _click_come_home_button(self) -> None:
-        self.page.navigate(AppRoute.MAIN_MENU_VIEW)
+    async def _click_come_home_button(self) -> None:
+        await self.page.push_route(AppRoute.MAIN_MENU_VIEW)
 
     async def _exit_from_app(self) -> None:
         await self.page.window.close()

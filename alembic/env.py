@@ -33,9 +33,11 @@ target_metadata = SQLModel.metadata
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
+
 def render_item(_type: str, obj: Any, _context: AutogenContext) -> str | Literal[False]:
     """Помогает Alembic красиво переводить типы SQLModel в стандартный SQLAlhcemy."""
     import sqlmodel
+
     if isinstance(obj, sqlmodel.AutoString):
         return "sa.String()"
     return False
@@ -68,9 +70,7 @@ def run_migrations_offline() -> None:
 
 def do_run_migrations(connection: Connection) -> None:
     context.configure(
-        connection=connection,
-        target_metadata=target_metadata,
-        render_item=render_item
+        connection=connection, target_metadata=target_metadata, render_item=render_item
     )
 
     with context.begin_transaction():

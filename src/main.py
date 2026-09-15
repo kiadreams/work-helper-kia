@@ -1,12 +1,13 @@
 from __future__ import annotations
+import asyncio
 
 import flet as ft
+from dishka import Scope, make_async_container
 
-from src.database.db_manager import DatabaseManager
 from src.gui_flet.main_window import MainWindow
-from src.settings import settings
+from src.di.providers import AppProvider, SessionProvider
 
-app_db = DatabaseManager(settings)
+container = make_async_container(AppProvider(), SessionProvider())
 
 
 def setup_window(page: ft.Page) -> None:
@@ -19,9 +20,19 @@ def setup_window(page: ft.Page) -> None:
         page.run_task(ft.BrowserContextMenu().disable)
 
 
+async def main_entrypoint(page: ft.Page) -> None:
+    async with container(
+        scope=Scope.SESSION, context={ft.Page: page}
+    ) as session_container:
+        await session_container.get(MainWindow)
+        alive = asyncio.Event()
+        page.on_close = lambda e: alive.set()
+        await alive.wait()
+
+
 ft.run(
     before_main=setup_window,
-    main=MainWindow,
+    main=main_entrypoint,
     view=ft.AppView.FLET_APP_HIDDEN,
 )
 
