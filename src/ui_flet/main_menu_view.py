@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from typing import Callable, Any
 
 import flet as ft
@@ -47,11 +45,11 @@ class MainMenuView(BaseViewComponent):
 
 class MainMenuContainer(ft.Container):
     def __init__(
-            self,
-            width: int = 500,
-            height: int = 200,
-            border_radius: int = 10,
-            padding: int = 5,
+        self,
+        width: int = 500,
+        height: int = 200,
+        border_radius: int = 10,
+        padding: int = 5,
     ) -> None:
         super().__init__()
         self.width = width
@@ -72,7 +70,7 @@ class MainMenuContainer(ft.Container):
         return column
 
     def create_button_name(
-            self, name_value: str, on_click_method: Callable[[ft.Event], Any]
+        self, name_value: str, on_click_method: Callable[[ft.Event], Any]
     ) -> None:
         button = ft.Button(
             content=ft.Text(
@@ -104,12 +102,16 @@ class CompanyNameArea(ft.Row):
 
 @ft.component
 def CompanyDropdownList(
-        company_list: CompanyListViewModel,
+    company_list: CompanyListViewModel,
 ) -> ft.Control:
     def handle_change(event: ft.Event) -> None:
         selected_id = int(event.control.value)
         company_list.selected_company = next(
-            (company for company in company_list.companies if company.id == selected_id),
+            (
+                company
+                for company in company_list.companies
+                if company.id == selected_id
+            ),
             None,
         )
 
@@ -126,7 +128,11 @@ def CompanyDropdownList(
     )
     company_dropdown_list = ft.Dropdown(
         label="Выбери компанию",
-        value=str(company_list.selected_company.id) if company_list.selected_company else None,
+        value=(
+            str(company_list.selected_company.id)
+            if company_list.selected_company
+            else None
+        ),
         options=dropdown_options,
         on_select=handle_change,
         width=220,

@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from typing import Protocol, TYPE_CHECKING, Sequence
 
 if TYPE_CHECKING:

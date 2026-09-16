@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import flet as ft
 
 from src.ui_flet.common_component import BaseViewComponent

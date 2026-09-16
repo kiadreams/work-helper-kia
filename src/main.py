@@ -1,44 +1,42 @@
-from __future__ import annotations
-
-import flet as ft
-
-from src.database.db_manager import DatabaseManager
-from src.ui_flet.main_window import MainWindow
-from src.settings import settings
-from src.ui_flet.main_menu_view import CompanyNameArea, CompanyDropdownList
-from viewmodel.company_viewmodel import CompanyListViewModel
-
-app_db = DatabaseManager(settings)
-
-
-def setup_window(page: ft.Page) -> None:
-    page.window.width = 1024
-    page.window.height = 800
-    page.title = "Рабочий помощник КИА"
-    page.window.title_bar_hidden = True
-    page.run_task(page.window.center)
-    if page.web:
-        page.run_task(ft.BrowserContextMenu().disable)
-
-
-# def main_entrypoint(page: ft.Page) -> None:
-#     # MainWindow(page, app_db)
-#     page.render(CompanyNameArea)
-
-
-def main_entry_component(page: ft.Page) -> None:
-    companies = CompanyListViewModel()
-    company_list = CompanyDropdownList
-    page.window.visible = True
-    page.render(company_list, companies)
-
-
-ft.run(
-    before_main=setup_window,
-    # main=main_entrypoint,
-    main=main_entry_component,
-    view=ft.AppView.FLET_APP_HIDDEN,
-)
+# import flet as ft
+#
+# from src.database.db_manager import DatabaseManager
+# from src.ui_flet.main_window import MainWindow
+# from src.settings import settings
+# from src.ui_flet.main_menu_view import CompanyNameArea, CompanyDropdownList
+# from viewmodel.company_viewmodel import CompanyListViewModel
+#
+# app_db = DatabaseManager(settings)
+#
+#
+# def setup_window(page: ft.Page) -> None:
+#     page.window.width = 1024
+#     page.window.height = 800
+#     page.title = "Рабочий помощник КИА"
+#     page.window.title_bar_hidden = True
+#     page.run_task(page.window.center)
+#     if page.web:
+#         page.run_task(ft.BrowserContextMenu().disable)
+#
+#
+# # def main_entrypoint(page: ft.Page) -> None:
+# #     # MainWindow(page, app_db)
+# #     page.render(CompanyNameArea)
+#
+#
+# def main_entry_component(page: ft.Page) -> None:
+#     companies = CompanyListViewModel()
+#     company_list = CompanyDropdownList
+#     page.window.visible = True
+#     page.render(company_list, companies)
+#
+#
+# ft.run(
+#     before_main=setup_window,
+#     # main=main_entrypoint,
+#     main=main_entry_component,
+#     view=ft.AppView.FLET_APP_HIDDEN,
+# )
 #
 #
 #
@@ -67,3 +65,17 @@ ft.run(
 #
 #
 # asyncio.run(main())
+#
+#
+#
+# Проверка создания шапки протокола:
+from src.infrastructure.protocol_templates.template_render import (
+    create_headline_template,
+)
+from pathlib import Path
+
+template_file_path = (
+    Path(__file__).parent / "infrastructure/protocol_templates/protocol_headline.docx"
+)
+target_file_path = Path(__file__).parent.parent / "result.docx"
+create_headline_template(template_file_path, target_file_path)
