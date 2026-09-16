@@ -1,4 +1,4 @@
-from src.core.domain.models import CompanyDomain, EmployeeDomain
+from src.core.domain.company_models import CompanyDomain, EmployeeDomain
 
 __all__ = [
     "CompanyDomain",

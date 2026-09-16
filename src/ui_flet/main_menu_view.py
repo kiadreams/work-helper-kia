@@ -4,7 +4,7 @@ import flet as ft
 
 from src.ui_flet.common_component import BaseViewComponent
 from src.ui_flet.route_data import AppRoute
-from viewmodel.company_viewmodel import CompanyListViewModel
+from src.viewmodel.company_viewmodel import CompanyListViewModel
 
 
 class MainMenuView(BaseViewComponent):
