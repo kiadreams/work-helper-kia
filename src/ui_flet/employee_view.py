@@ -124,9 +124,7 @@ class EmployeePhoto(ft.Container):
                 self.employee_photo.visible = True
                 self.employee_icon.visible = False
                 if len(self.context_menu.primary_items) < 2:
-                    self.context_menu.primary_items.append(
-                        self._delete_photo_menu_item()
-                    )
+                    self.context_menu.primary_items.append(self._delete_photo_menu_item())
 
     def _delete_photo(self, event: ft.Event) -> None:
         self.last_photo_path = ""

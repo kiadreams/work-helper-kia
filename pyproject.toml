@@ -25,3 +25,10 @@ python_version = "3.14"  # Укажите вашу версию Python
 exclude = [
     "^alembic/",
 ]
+
+[[tool.mypy.overrides]]
+module = "docxtpl.*"
+ignore_missing_imports = true
+
+[tool.black]
+line-length = 100

@@ -41,17 +41,11 @@ class MainWindow:
             route = event.route
         match route:
             case AppRoute.EMPLOYEE_VIEW.value:
-                self.page.views.append(
-                    self.VIEWS[route](self.page, AppRoute.EMPLOYEE_VIEW.value)
-                )
+                self.page.views.append(self.VIEWS[route](self.page, AppRoute.EMPLOYEE_VIEW.value))
             case AppRoute.REPORT_VIEW.value:
-                self.page.views.append(
-                    self.VIEWS[route](self.page, AppRoute.REPORT_VIEW.value)
-                )
+                self.page.views.append(self.VIEWS[route](self.page, AppRoute.REPORT_VIEW.value))
             case AppRoute.PROTOCOL_VIEW.value:
-                self.page.views.append(
-                    self.VIEWS[route](self.page, AppRoute.PROTOCOL_VIEW.value)
-                )
+                self.page.views.append(self.VIEWS[route](self.page, AppRoute.PROTOCOL_VIEW.value))
         self.page.update()
 
     async def _go_back(self, event: ft.ViewPopEvent) -> None:

@@ -3,9 +3,9 @@ from docxtpl import DocxTemplate
 
 
 def create_headline_template(
-        template_path: Path,
-        target_file_path: Path,
-        template_data: dict[str, str] | None = None
+    template_path: Path,
+    target_file_path: Path,
+    template_data: dict[str, str] | None = None,
 ) -> None:
     # data = {
     #     "accession": "ВЛ 330 кВ Ст.ГРЭС - Армавир",

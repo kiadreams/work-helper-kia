@@ -1,5 +1,4 @@
 from dataclasses import dataclass, field
-from select import select
 from typing import TYPE_CHECKING
 
 import flet as ft

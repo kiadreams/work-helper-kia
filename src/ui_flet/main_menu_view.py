@@ -107,11 +107,7 @@ def CompanyDropdownList(
     def handle_change(event: ft.Event) -> None:
         selected_id = int(event.control.value)
         company_list.selected_company = next(
-            (
-                company
-                for company in company_list.companies
-                if company.id == selected_id
-            ),
+            (company for company in company_list.companies if company.id == selected_id),
             None,
         )
 
@@ -128,11 +124,7 @@ def CompanyDropdownList(
     )
     company_dropdown_list = ft.Dropdown(
         label="Выбери компанию",
-        value=(
-            str(company_list.selected_company.id)
-            if company_list.selected_company
-            else None
-        ),
+        value=(str(company_list.selected_company.id) if company_list.selected_company else None),
         options=dropdown_options,
         on_select=handle_change,
         width=220,

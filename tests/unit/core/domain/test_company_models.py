@@ -15,4 +15,3 @@ def test_employee_dmn_model() -> None:
     assert employee_domain.id is None, "The id field doesn't exist"
     assert employee_domain.name == "Igor", "The name field doesn't exist"
     assert employee_domain.last_name == "First", "The last_name field doesn't exist"
-

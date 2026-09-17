@@ -9,15 +9,13 @@ from src.infrastructure.protocol_templates.template_render import (
 def test_create_headline_template(tmp_path: Path, mock_headline_data):
     project_root = Path(__file__).parents[4]
     template_file_path = (
-            project_root
-            / "src"
-            / "infrastructure"
-            / "protocol_templates"
-            / "protocol_headline.docx"
+        project_root / "src" / "infrastructure" / "protocol_templates" / "protocol_headline.docx"
     )
     target_file_path = tmp_path / "output_result.docx"
 
-    assert template_file_path.exists(), f"No actual template found at the path: {template_file_path}"
+    assert (
+        template_file_path.exists()
+    ), f"No actual template found at the path: {template_file_path}"
 
     create_headline_template(template_file_path, target_file_path, mock_headline_data)
 

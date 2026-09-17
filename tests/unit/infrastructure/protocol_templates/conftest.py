@@ -1,5 +1,6 @@
 import pytest
 
+
 @pytest.fixture
 def mock_headline_data() -> dict[str, str]:
     return {
