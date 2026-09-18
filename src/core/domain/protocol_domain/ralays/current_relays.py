@@ -1,5 +1,5 @@
 from src.core.domain.protocol_domain import enums
-from src.core.domain.protocol_domain.relay_models import Relay
+from core.domain.protocol_domain.ralays.relay_models import Relay
 
 
 class CurrentRelay(Relay):

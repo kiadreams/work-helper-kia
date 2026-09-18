@@ -5,20 +5,19 @@ if TYPE_CHECKING:
 
 
 class Relay:
-    _pickup_setting: float = -1
-    _reset_setting: float = -1
-    _pickup_time_delay: list[float]
-    _reset_time_delay: list[float]
-
     def __init__(
         self,
         relay_type: PCRelay,
         schematic_designation: str | None = None,
     ) -> None:
+        self.id: int | None = None
+        self.is_tested = False
         self.schematic_designation = schematic_designation
         self.relay_type = relay_type
-        self._pickup_time_delay = list()
-        self._reset_time_delay = list()
+        self._pickup_setting: float = -1
+        self._reset_setting: float = -1
+        self._pickup_time_delay: list[float ] = list()
+        self._reset_time_delay: list[float] = list()
 
     @property
     def pickup_time_delay(self) -> float:

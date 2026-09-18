@@ -1,7 +1,7 @@
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from src.core.domain.protocol_domain.relay_models import Relay
+    from core.domain.protocol_domain.ralays.relay_models import Relay
 
 
 class RelayAssembly:
