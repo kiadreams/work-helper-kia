@@ -13,9 +13,9 @@ def test_create_headline_template(tmp_path: Path, mock_headline_data):
     )
     target_file_path = tmp_path / "output_result.docx"
 
-    assert (
-        template_file_path.exists()
-    ), f"No actual template found at the path: {template_file_path}"
+    assert template_file_path.exists(), (
+        f"No actual template found at the path: {template_file_path}"
+    )
 
     create_headline_template(template_file_path, target_file_path, mock_headline_data)
 
