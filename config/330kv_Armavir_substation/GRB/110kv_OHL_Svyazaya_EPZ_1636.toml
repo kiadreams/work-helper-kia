@@ -1,0 +1,23 @@
+[meta]
+feeder_title = "ВЛ 110 кВ Связная"
+dispaly_device_name = "Комплект защит ЭПЗ-1636"
+
+[panel]
+number = 101
+serial_number = ""
+
+relays = [ "РП-23" ]
+relay_sets = [ "КРБ-126", "КРБ-12", "ДЗ-2", "КЗ-1", "КЗ-2" ]
+
+[krb_12]
+relays = []
+
+[krb_126]
+relays = []
+
+[kz_1]
+relays = []
+
+[kz_2]
+relays = []
+

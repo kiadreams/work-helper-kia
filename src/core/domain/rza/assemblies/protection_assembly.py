@@ -14,14 +14,9 @@ class ProtectionAssembly(RzaDevice):
         schematic_designation: str | None = None,
         assembly_id: int | None = None,
         serial_number: str | None = None,
-    ):
+    ) -> None:
         super().__init__(device_id=assembly_id)
         self.assembly_type = assembly_type
         self.schematic_designation = schematic_designation
         self.serial_number = serial_number
 
-
-class MpTerminal(ProtectionAssembly):
-    def __init__(self, name: str, firmware: str, **kwargs):
-        super().__init__(name, **kwargs)
-        self.firmware = firmware

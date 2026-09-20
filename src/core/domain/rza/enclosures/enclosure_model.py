@@ -5,7 +5,7 @@ from src.core.domain.rza.base_rza_models import RzaDevice
 
 if TYPE_CHECKING:
     from src.core.domain.rza.enums import EnclosureType
-    from src.core.domain.rza.assemblies import RelaySet
+    from src.core.domain.rza.assemblies import ProtectionAssembly
     from src.core.domain.rza.relays import Relay
 
 
@@ -23,5 +23,5 @@ class Enclosure(RzaDevice):
         self.operational_designation = operational_designation
         self.serial_number = serial_number
         self.inventory_number = inventory_number
-        self.relay_sets: list[RelaySet] = []
+        self.assemblies: list[ProtectionAssembly] = []
         self.relays: list[Relay] = []
