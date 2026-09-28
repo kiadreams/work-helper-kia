@@ -1,10 +1,11 @@
 import pytest
 
+from src.core.domain.rza.measure_value import MeasuredValue
 from src.core.domain.rza.enums import (
     AuxiliaryRelayType,
     CurrentRelayType,
     TimeRelayType,
-    VoltageRelayType,
+    VoltageRelayType, RelayType,
 )
 from src.core.domain.rza.relays import (
     CurrentRelay,
@@ -91,3 +92,50 @@ def test_passing_contact_of_time_relay() -> None:
     assert len(relay.passing_contact_time_delays) == 0, (
         "The passing_contact_time_delays list is not empty"
     )
+
+
+def test_addition_of_measure_value() -> None:
+    value_1 = MeasuredValue(100)
+    value_2 = MeasuredValue(200)
+    assert value_1 + value_2 == 300, "The value must be equal to 300"
+
+
+def test_subtraction_of_measure_value() -> None:
+    value_1 = MeasuredValue(100)
+    value_2 = MeasuredValue(200)
+    assert value_1 - value_2 == -100, "The result must be equal -100"
+
+
+def test_division_of_measure_value() -> None:
+    value_1 = MeasuredValue(5)
+    value_2 = MeasuredValue(3)
+    assert value_1 / value_2 == 5 / 3, "The result must be equal 5 / 3"
+
+
+def test_multiplication_of_measure_value() -> None:
+    value_1 = MeasuredValue(5)
+    value_2 = MeasuredValue(3)
+    assert value_1 * value_2 == 15, "The result must be equal 15"
+
+
+def test_less_than_of_measure_value() -> None:
+    value_1 = MeasuredValue(1.2777)
+    value_2 = MeasuredValue(1.3)
+    assert value_1 < value_2, "The value_1 must be less than value_2"
+
+
+def test_greater_than_of_measure_value() -> None:
+    value_1 = MeasuredValue(1.2777)
+    value_2 = MeasuredValue(1.3)
+    assert value_2 > value_1, "The value_2 must be greater than value_1"
+
+
+def test_equals_two_values() -> None:
+    value_1 = MeasuredValue(20002)
+    value_2 = MeasuredValue(20000)
+    assert value_1 == value_2, "The value_1 and value_2 must be equal"
+
+def test_relative_difference_two_values() -> None:
+    value_1 = MeasuredValue(20003)
+    value_2 = MeasuredValue(20000)
+    assert not value_1 == value_2, "The value_1 and value_2 must not be equal"

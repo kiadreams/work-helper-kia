@@ -8,7 +8,7 @@ from src.core.domain.rza.enums import ValueQuality
 
 @dataclass(slots=True, frozen=True, eq=False)
 class MeasuredValue:
-    value: float
+    value: float = -1
     creation_time: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
     quality: ValueQuality = ValueQuality.DEFAULT
 

@@ -69,3 +69,9 @@ class RelaySetType(AssemblyType):
 
 class MpTerminalType(AssemblyType):
     MP_TERMINAL_ANY = "терминал"
+
+
+class DeviceStatus(IntEnum):
+    RESERVE = 0
+    OPERATION = 1
+    UNKNOWN = 2

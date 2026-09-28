@@ -15,7 +15,7 @@ class Relay(RzaDevice):
         relay_id: int | None = None,
         schematic_designation: str | None = None,
     ) -> None:
-        super().__init__(relay_id)
+        super().__init__(device_id=relay_id)
         self.is_tested = False
         self.schematic_designation = schematic_designation
         self.relay_type = relay_type
