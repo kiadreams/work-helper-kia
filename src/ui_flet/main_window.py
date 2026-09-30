@@ -1,6 +1,7 @@
 from typing import TYPE_CHECKING
 
 import flet as ft
+from flet import component
 
 from src.ui_flet.employee_view import EmployeeView
 from src.ui_flet.main_menu_view import MainMenuView
@@ -21,9 +22,9 @@ class MainWindow:
     }
 
     def __init__(
-        self,
-        page: ft.Page,
-        app_db: DatabaseManager,
+            self,
+            page: ft.Page,
+            app_db: DatabaseManager,
     ) -> None:
         self.page = page
         self.db = app_db

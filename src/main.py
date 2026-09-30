@@ -1,10 +1,11 @@
 import flet as ft
 
 from src.database.db_manager import DatabaseManager
-from src.ui_flet.main_window import MainWindow
 from src.settings import settings
-from src.ui_flet.main_menu_view import CompanyNameArea, CompanyDropdownList
-from viewmodel.company_viewmodel import CompanyListViewModel
+from src.ui_flet.main_menu_view import MainMenu
+from src.ui_flet.employee_view import Employees
+from src.ui_flet.report_view import Reports
+from src.ui_flet.protocol_view import Protocols
 
 app_db = DatabaseManager(settings)
 
@@ -19,24 +20,28 @@ def setup_window(page: ft.Page) -> None:
         page.run_task(ft.BrowserContextMenu().disable)
 
 
-# def main_entrypoint(page: ft.Page) -> None:
-#     # MainWindow(page, app_db)
-#     page.render(CompanyNameArea)
+@ft.component
+def App():
+    router = ft.Router(
+        [
+            ft.Route(index=True, component=MainMenu),
+            ft.Route(path="/employees", component=Employees, children=[]),
+            ft.Route(path="/reports", component=Reports, children=[]),
+            ft.Route(path="/reports", component=Protocols, children=[]),
+        ]
+    )
+    return ft.SafeArea(
+        content=router
+    )
 
 
-def main_entry_component(page: ft.Page) -> None:
-    companies = CompanyListViewModel()
-    company_list = CompanyDropdownList
+def main(page: ft.Page) -> None:
     page.window.visible = True
-    page.render(company_list, companies)
+    page.render(App)
 
 
-ft.run(
-    before_main=setup_window,
-    # main=main_entrypoint,
-    main=main_entry_component,
-    view=ft.AppView.FLET_APP_HIDDEN,
-)
+ft.run(before_main=setup_window, main=main, view=ft.AppView.FLET_APP_HIDDEN)
+
 #
 #
 #

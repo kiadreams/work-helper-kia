@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 @ft.observable
 @dataclass
-class CompanyState:
+class CompanyViewModel:
     name: str
     full_name: str | None = field(default=None)
     id: int | None = field(default=None)
@@ -21,17 +21,17 @@ class CompanyState:
 
 @ft.observable
 @dataclass
-class CompanyListViewModel:
-    companies: list[CompanyState] = field(default_factory=list)
-    selected_company: CompanyState | None = field(default=None)
+class MainMenuViewModel:
+    companies: list[CompanyViewModel] = field(default_factory=list)
+    selected_company: CompanyViewModel | None = field(default=None)
 
     def __post_init__(self) -> None:
-        self.companies.append(CompanyState(id=1, name="Кубанское ПМЭС"))
-        self.companies.append(CompanyState(id=2, name="Ростовское ПМЭС"))
+        self.companies.append(CompanyViewModel(id=1, name="Кубанское ПМЭС"))
+        self.companies.append(CompanyViewModel(id=2, name="Ростовское ПМЭС"))
         self.selected_company = self.companies[0] if self.companies else None
 
     def add_company(self, name: str, full_name: str | None = None) -> None:
-        self.companies.append(CompanyState(name, full_name))
+        self.companies.append(CompanyViewModel(name, full_name))
 
-    def delete_company(self, company: CompanyState) -> None:
+    def delete_company(self, company: CompanyViewModel) -> None:
         self.companies.remove(company)

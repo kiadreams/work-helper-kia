@@ -167,3 +167,15 @@ class EmployDataBox(ft.Container):
         super().__init__()
         self.first_row = ft.Row()
         self.second_row = ft.Row()
+
+
+
+@ft.component
+def Employees():
+    button_back = ft.Button("Back", on_click=lambda: ft.context.page.navigate('/'))
+    container = ft.Container(
+        content=ft.Column(
+            controls=[ft.Text("Employees"), button_back]
+        )
+    )
+    return container
