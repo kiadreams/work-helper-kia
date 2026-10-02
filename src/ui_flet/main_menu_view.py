@@ -110,20 +110,29 @@ class CompanyNameArea(ft.Row):
 @ft.component
 def MainMenu():
     company_list_model = MainMenuViewModel()
-    container = ft.Container()
-    column = ft.Column(
+    main_container = ft.Container()
+    button_container = ft.Container()
+    main_column = ft.Column(
+        horizontal_alignment=CrossAxisAlignment.CENTER,
+    )
+    button_column = ft.Column(
+        margin=200,
         horizontal_alignment=CrossAxisAlignment.CENTER,
     )
 
-    column.controls = [
-        CompanyDropdownList(company_list_model),
+    button_column.controls = [
         ft.Text("Главное меню"),
         menu_button("ПЕРСОНАЛ", lambda: ft.context.page.navigate("/employees")),
         menu_button("ОТЧЕТЫ", lambda: ft.context.page.navigate("/reports")),
         menu_button("ПРОТОКОЛЫ", lambda: ft.context.page.navigate("/reports")),
     ]
-    container.content = column
-    return container
+    button_container.content = button_column
+    main_column.controls = [
+        CompanyDropdownList(company_list_model),
+        button_container
+    ]
+    main_container.content = main_column
+    return main_container
 
 
 @ft.component

@@ -34,7 +34,7 @@ class Relay(RzaDevice):
 
     @pickup_setting.setter
     def pickup_setting(self, value: float) -> None:
-        self._pickup_setting = MeasuredValue(value=value, quality=ValueQuality.REAL)
+        self._pickup_setting = MeasuredValue(value=value, quality=quality)
 
     @property
     def reset_setting(self) -> MeasuredValue | None:
@@ -63,15 +63,15 @@ class Relay(RzaDevice):
             self.reset_time_delays.clear()
 
     @property
-    def reset_ratio(self) -> MeasuredValue | None:
-        return self._reset_ratio
+    def reset_ratio(self) -> MeasuredValue:
+        return self._calculate_reset_ratio()
 
-    def calculate_reset_ratio(self) -> None:
+    def _calculate_reset_ratio(self) -> MeasuredValue:
         if self._pickup_setting is None:
             raise ValueError("Не указан величина срабатывания реле")
         if self._reset_setting is None:
             raise ValueError("Не указана величина возврата реле")
-        self._reset_ratio = self._reset_setting / self._pickup_setting
+        return self._reset_setting / self._pickup_setting
 
     @staticmethod
     def _calculate_average_value(list_of_value: list[float]) -> MeasuredValue:

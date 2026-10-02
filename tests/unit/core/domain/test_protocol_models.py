@@ -23,12 +23,12 @@ def test_reset_ration_of_relay() -> None:
     assert relay.relay_type.value == "рп", "The relay type is not correct"
 
     with pytest.raises(ValueError, match="Не указан величина срабатывания реле"):
-        relay.calculate_reset_ratio()
+        relay._calculate_reset_ratio()
     relay.pickup_setting = 1.5
     with pytest.raises(ValueError, match="Не указана величина возврата реле"):
-        relay.calculate_reset_ratio()
+        relay._calculate_reset_ratio()
     relay.reset_setting = 0.75
-    relay.calculate_reset_ratio()
+    relay._calculate_reset_ratio()
     assert relay.reset_ratio == 0.5, "The reset ratio should be 0.5"
 
 

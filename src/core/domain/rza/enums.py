@@ -23,11 +23,7 @@ class AssemblyType(DeviceType):
     pass
 
 
-class AuxiliaryRelayType(RelayType):
-    RELAY_AR_ANY = "рп"
-    RELAY_AR_23 = "рп-23"
-    RELAY_AR_222 = "рп-222"
-    RELAY_AR_255 = "рп-255"
+
 
 
 class CurrentRelayType(RelayType):
