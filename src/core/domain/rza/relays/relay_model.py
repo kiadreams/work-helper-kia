@@ -25,8 +25,8 @@ class Relay(RzaDevice):
         self._pickup_time_delay: MeasuredValue | None = None
         self._reset_time_delay: MeasuredValue | None = None
 
-        self.pickup_time_delays: list[float] = list()
-        self.reset_time_delays: list[float] = list()
+        self.pickup_time_delays: list[float] = []
+        self.reset_time_delays: list[float] = []
 
     @property
     def pickup_setting(self) -> MeasuredValue | None:
@@ -34,7 +34,7 @@ class Relay(RzaDevice):
 
     @pickup_setting.setter
     def pickup_setting(self, value: float) -> None:
-        self._pickup_setting = MeasuredValue(value=value, quality=quality)
+        self._pickup_setting = MeasuredValue(value=value, quality=ValueQuality.REAL)
 
     @property
     def reset_setting(self) -> MeasuredValue | None:

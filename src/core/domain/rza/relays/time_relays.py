@@ -18,7 +18,7 @@ class TimeRelay(Relay):
             relay_type=relay_type, schematic_designation=schematic_designation, relay_id=relay_id
         )
         self._passing_contact_time_delay: MeasuredValue | None = None
-        self.passing_contact_time_delays: list[float] = list()
+        self.passing_contact_time_delays: list[float] = []
 
     @property
     def passing_contact_time_delay(self) -> MeasuredValue | None:

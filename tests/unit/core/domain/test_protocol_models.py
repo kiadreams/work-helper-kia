@@ -1,18 +1,20 @@
 import pytest
 
-from src.core.domain.rza.measure_value import MeasuredValue
 from src.core.domain.rza.enums import (
-    AuxiliaryRelayType,
     CurrentRelayType,
     TimeRelayType,
-    VoltageRelayType, RelayType,
+    VoltageRelayType,
 )
+from src.core.domain.rza.measure_value import MeasuredValue
 from src.core.domain.rza.relays import (
     CurrentRelay,
-    TimeRelay,
-    AuxiliaryRelay,
     Relay,
+    TimeRelay,
     VoltageRelay,
+)
+from src.core.domain.rza.relays.auxiliary_relays import (
+    AuxiliaryRelay,
+    AuxiliaryRelayType,
 )
 
 
@@ -23,12 +25,11 @@ def test_reset_ration_of_relay() -> None:
     assert relay.relay_type.value == "рп", "The relay type is not correct"
 
     with pytest.raises(ValueError, match="Не указан величина срабатывания реле"):
-        relay._calculate_reset_ratio()
+        _ = relay.reset_ratio
     relay.pickup_setting = 1.5
     with pytest.raises(ValueError, match="Не указана величина возврата реле"):
-        relay._calculate_reset_ratio()
+        _ = relay.reset_ratio
     relay.reset_setting = 0.75
-    relay._calculate_reset_ratio()
     assert relay.reset_ratio == 0.5, "The reset ratio should be 0.5"
 
 
@@ -138,4 +139,4 @@ def test_equals_two_values() -> None:
 def test_relative_difference_two_values() -> None:
     value_1 = MeasuredValue(20003)
     value_2 = MeasuredValue(20000)
-    assert not value_1 == value_2, "The value_1 and value_2 must not be equal"
+    assert value_1 != value_2, "The value_1 and value_2 must not be equal"

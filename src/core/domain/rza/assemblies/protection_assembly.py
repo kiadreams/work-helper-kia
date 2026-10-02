@@ -4,7 +4,6 @@ from src.core.domain.rza.base_rza_models import RzaDevice
 
 if TYPE_CHECKING:
     from src.core.domain.rza.enums import AssemblyType
-    from src.core.domain.rza.relays import Relay
 
 
 class ProtectionAssembly(RzaDevice):

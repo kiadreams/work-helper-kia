@@ -1,7 +1,6 @@
 from typing import TYPE_CHECKING
 
 import flet as ft
-from flet import component
 
 from src.ui_flet.employee_view import EmployeeView
 from src.ui_flet.main_menu_view import MainMenuView
@@ -12,19 +11,19 @@ from src.ui_flet.route_data import AppRoute
 if TYPE_CHECKING:
     from src.database.db_manager import DatabaseManager
 
+VIEWS = {
+    AppRoute.MAIN_MENU_VIEW.value: MainMenuView,
+    AppRoute.EMPLOYEE_VIEW.value: EmployeeView,
+    AppRoute.REPORT_VIEW.value: ReportView,
+    AppRoute.PROTOCOL_VIEW.value: ProtocolView,
+}
+
 
 class MainWindow:
-    VIEWS = {
-        AppRoute.MAIN_MENU_VIEW.value: MainMenuView,
-        AppRoute.EMPLOYEE_VIEW.value: EmployeeView,
-        AppRoute.REPORT_VIEW.value: ReportView,
-        AppRoute.PROTOCOL_VIEW.value: ProtocolView,
-    }
-
     def __init__(
-            self,
-            page: ft.Page,
-            app_db: DatabaseManager,
+        self,
+        page: ft.Page,
+        app_db: DatabaseManager,
     ) -> None:
         self.page = page
         self.db = app_db
@@ -42,11 +41,13 @@ class MainWindow:
             route = event.route
         match route:
             case AppRoute.EMPLOYEE_VIEW.value:
-                self.page.views.append(self.VIEWS[route](self.page, AppRoute.EMPLOYEE_VIEW.value))
+                self.page.views.append(VIEWS[route](self.page, AppRoute.EMPLOYEE_VIEW.value))
             case AppRoute.REPORT_VIEW.value:
-                self.page.views.append(self.VIEWS[route](self.page, AppRoute.REPORT_VIEW.value))
+                self.page.views.append(VIEWS[route](self.page, AppRoute.REPORT_VIEW.value))
             case AppRoute.PROTOCOL_VIEW.value:
-                self.page.views.append(self.VIEWS[route](self.page, AppRoute.PROTOCOL_VIEW.value))
+                self.page.views.append(VIEWS[route](self.page, AppRoute.PROTOCOL_VIEW.value))
+            case _:
+                pass
         self.page.update()
 
     async def _go_back(self, event: ft.ViewPopEvent) -> None:

@@ -1,9 +1,10 @@
 import random as rnd
 
-from core.domain.rza.enums import ValueQuality
-from core.domain.rza.measure_value import MeasuredValue
-from core.domain.rza.relays.auxiliary_relays.enums import AuxiliaryRelayType
-from src.core.domain.rza.relays import AuxiliaryRelay
+from src.core.domain.rza.enums import ValueQuality
+from src.core.domain.rza.measure_value import MeasuredValue
+
+from .base import AuxiliaryRelay
+from .enums import AuxiliaryRelayType
 
 
 class RelayAr23(AuxiliaryRelay):

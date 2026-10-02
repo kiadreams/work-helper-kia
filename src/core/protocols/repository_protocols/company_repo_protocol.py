@@ -1,7 +1,8 @@
-from typing import Protocol, TYPE_CHECKING, Sequence
+from collections.abc import Sequence
+from typing import TYPE_CHECKING, Protocol
 
 if TYPE_CHECKING:
-    from src.core.domain import EmployeeDomain, CompanyDomain
+    from src.core.domain import CompanyDomain, EmployeeDomain
 
 
 class CompanyRepoProtocol(Protocol):

@@ -3,8 +3,8 @@ from typing import TYPE_CHECKING
 from src.core.domain.rza.assemblies import ProtectionAssembly
 
 if TYPE_CHECKING:
-    from src.core.domain.rza.relays import Relay
     from src.core.domain.rza.enums import RelaySetType
+    from src.core.domain.rza.relays import Relay
 
 
 class RelaySet(ProtectionAssembly):

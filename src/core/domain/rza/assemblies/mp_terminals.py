@@ -1,4 +1,5 @@
 from typing import TYPE_CHECKING
+
 from src.core.domain.rza.assemblies import ProtectionAssembly
 
 if TYPE_CHECKING:

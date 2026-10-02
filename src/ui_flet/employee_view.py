@@ -1,7 +1,7 @@
 import flet as ft
 
-from src.ui_flet.ui_protocols.entities import EmployeeUIEntity
 from src.ui_flet.common_component import BaseViewComponent
+from src.ui_flet.ui_protocols.entities import EmployeeUIEntity
 
 
 class EmployeeView(BaseViewComponent):

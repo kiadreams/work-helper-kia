@@ -1,8 +1,9 @@
-from typing import TYPE_CHECKING, Sequence
+from collections.abc import Sequence
+from typing import TYPE_CHECKING
 
 from sqlmodel import select
 
-from src.core.domain import EmployeeDomain, CompanyDomain
+from src.core.domain import CompanyDomain, EmployeeDomain
 from src.core.protocols import CompanyRepoProtocol
 
 if TYPE_CHECKING:

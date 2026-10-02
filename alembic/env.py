@@ -6,10 +6,9 @@ from alembic.autogenerate.api import AutogenContext
 from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import create_async_engine
-
-from alembic import context
 from sqlmodel import SQLModel
 
+from alembic import context
 from src.settings import settings
 
 # this is the Alembic Config object, which provides

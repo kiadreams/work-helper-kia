@@ -1,8 +1,8 @@
-from typing import Callable, Any
+from collections.abc import Callable
+from typing import Any
 
 import flet as ft
 from flet import CrossAxisAlignment
-
 
 from src.ui_flet.common_component import BaseViewComponent
 from src.ui_flet.route_data import AppRoute
@@ -102,11 +102,6 @@ class CompanyNameArea(ft.Row):
         self._company_list.options.append(list_item)
 
 
-#
-#
-#
-#
-#
 @ft.component
 def MainMenu():
     company_list_model = MainMenuViewModel()

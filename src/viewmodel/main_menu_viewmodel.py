@@ -1,10 +1,6 @@
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING
 
 import flet as ft
-
-if TYPE_CHECKING:
-    pass
 
 
 @ft.observable
@@ -22,7 +18,7 @@ class CompanyViewModel:
 @ft.observable
 @dataclass
 class MainMenuViewModel:
-    companies: list[CompanyViewModel] = field(default_factory=list)
+    companies: list[CompanyViewModel] = field(default_factory=list[CompanyViewModel])
     selected_company: CompanyViewModel | None = field(default=None)
 
     def __post_init__(self) -> None:

@@ -1,13 +1,15 @@
 from typing import TYPE_CHECKING
 
 from sqlalchemy import event
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
+from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 if TYPE_CHECKING:
-    from src.settings import Settings
-    from sqlalchemy.ext.asyncio import AsyncEngine
     from pathlib import Path
+
+    from sqlalchemy.ext.asyncio import AsyncEngine
+
+    from src.settings import Settings
 
 
 class DatabaseManager:

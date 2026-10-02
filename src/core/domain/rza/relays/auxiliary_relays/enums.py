@@ -11,4 +11,4 @@ class AuxiliaryRelayType(RelayType):
 
 
 class AuxRelayDefaultValues(Enum):
-    AuxiliaryRelayType.RELAY_AR_23 = {"reset_setting": 23, }
+    RELAY_AR_23 = ("reset_setting", 23)

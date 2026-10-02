@@ -1,4 +1,5 @@
 from typing import TYPE_CHECKING
+
 from src.core.domain.rza.relays.relay_model import Relay
 
 if TYPE_CHECKING:

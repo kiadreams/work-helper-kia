@@ -1,4 +1,5 @@
 from pathlib import Path
+
 import docx
 
 from src.infrastructure.protocol_templates.template_render import (
@@ -6,7 +7,7 @@ from src.infrastructure.protocol_templates.template_render import (
 )
 
 
-def test_create_headline_template(tmp_path: Path, mock_headline_data):
+def test_create_headline_template(tmp_path: Path, mock_headline_data: dict[str, str]):
     project_root = Path(__file__).parents[4]
     template_file_path = (
         project_root / "src" / "infrastructure" / "protocol_templates" / "protocol_headline.docx"

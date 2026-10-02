@@ -2,10 +2,10 @@ import flet as ft
 
 from src.database.db_manager import DatabaseManager
 from src.settings import settings
-from src.ui_flet.main_menu_view import MainMenu
 from src.ui_flet.employee_view import Employees
-from src.ui_flet.report_view import Reports
+from src.ui_flet.main_menu_view import MainMenu
 from src.ui_flet.protocol_view import Protocols
+from src.ui_flet.report_view import Reports
 
 app_db = DatabaseManager(settings)
 
@@ -21,7 +21,7 @@ def setup_window(page: ft.Page) -> None:
 
 
 @ft.component
-def App():
+def App() -> ft.SafeArea:
     router = ft.Router(
         [
             ft.Route(index=True, component=MainMenu),

@@ -2,10 +2,9 @@ from typing import TYPE_CHECKING
 
 from src.core.domain.rza.base_rza_models import RzaDevice
 
-
 if TYPE_CHECKING:
-    from src.core.domain.rza.enums import EnclosureType
     from src.core.domain.rza.assemblies import ProtectionAssembly
+    from src.core.domain.rza.enums import EnclosureType
     from src.core.domain.rza.relays import Relay
 
 
