@@ -10,10 +10,6 @@ class ReportView(BaseViewComponent):
 
 @ft.component
 def Reports():
-    button_back = ft.Button("Back", on_click=lambda: ft.context.page.navigate('/'))
-    container = ft.Container(
-        content=ft.Column(
-            controls=[ft.Text("Reports"), button_back]
-        )
-    )
+    button_back = ft.Button("Back", on_click=lambda: ft.context.page.navigate("/"))
+    container = ft.Container(content=ft.Column(controls=[ft.Text("Reports"), button_back]))
     return container

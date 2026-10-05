@@ -19,6 +19,11 @@ class TimeRelay(Relay):
         )
         self._passing_contact_time_delay: MeasuredValue | None = None
         self.passing_contact_time_delays: list[float] = []
+        self._pickup_time_delay: MeasuredValue | None = None
+        self._reset_time_delay: MeasuredValue | None = None
+
+        self.pickup_time_delays: list[float] = []
+        self.reset_time_delays: list[float] = []
 
     @property
     def passing_contact_time_delay(self) -> MeasuredValue | None:
@@ -30,3 +35,21 @@ class TimeRelay(Relay):
                 self.passing_contact_time_delays
             )
             self.passing_contact_time_delays.clear()
+
+    @property
+    def pickup_time_delay(self) -> MeasuredValue | None:
+        return self._pickup_time_delay
+
+    def calculate_pickup_time_delay(self) -> None:
+        if self.pickup_time_delays:
+            self._pickup_time_delay = self._calculate_average_value(self.pickup_time_delays)
+            self.pickup_time_delays.clear()
+
+    @property
+    def reset_time_delay(self) -> MeasuredValue | None:
+        return self._reset_time_delay
+
+    def calculate_reset_time_delay(self) -> None:
+        if self.reset_time_delays:
+            self._reset_time_delay = self._calculate_average_value(self.reset_time_delays)
+            self.reset_time_delays.clear()

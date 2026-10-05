@@ -30,9 +30,7 @@ def App() -> ft.SafeArea:
             ft.Route(path="/reports", component=Protocols, children=[]),
         ]
     )
-    return ft.SafeArea(
-        content=router
-    )
+    return ft.SafeArea(content=router)
 
 
 def main(page: ft.Page) -> None:

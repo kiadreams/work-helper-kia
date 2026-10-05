@@ -18,4 +18,3 @@ class ProtectionAssembly(RzaDevice):
         self.assembly_type = assembly_type
         self.schematic_designation = schematic_designation
         self.serial_number = serial_number
-

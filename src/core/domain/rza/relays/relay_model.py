@@ -22,11 +22,6 @@ class Relay(RzaDevice):
         self._reset_ratio: MeasuredValue | None = None
         self._pickup_setting: MeasuredValue | None = None
         self._reset_setting: MeasuredValue | None = None
-        self._pickup_time_delay: MeasuredValue | None = None
-        self._reset_time_delay: MeasuredValue | None = None
-
-        self.pickup_time_delays: list[float] = []
-        self.reset_time_delays: list[float] = []
 
     @property
     def pickup_setting(self) -> MeasuredValue | None:
@@ -43,24 +38,6 @@ class Relay(RzaDevice):
     @reset_setting.setter
     def reset_setting(self, value: float) -> None:
         self._reset_setting = MeasuredValue(value=value, quality=ValueQuality.REAL)
-
-    @property
-    def pickup_time_delay(self) -> MeasuredValue | None:
-        return self._pickup_time_delay
-
-    def calculate_pickup_time_delay(self) -> None:
-        if self.pickup_time_delays:
-            self._pickup_time_delay = self._calculate_average_value(self.pickup_time_delays)
-            self.pickup_time_delays.clear()
-
-    @property
-    def reset_time_delay(self) -> MeasuredValue | None:
-        return self._reset_time_delay
-
-    def calculate_reset_time_delay(self) -> None:
-        if self.reset_time_delays:
-            self._reset_time_delay = self._calculate_average_value(self.reset_time_delays)
-            self.reset_time_delays.clear()
 
     @property
     def reset_ratio(self) -> MeasuredValue:

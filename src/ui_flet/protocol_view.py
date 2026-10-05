@@ -10,10 +10,6 @@ class ProtocolView(BaseViewComponent):
 
 @ft.component
 def Protocols():
-    button_back = ft.Button("Back", on_click=lambda: ft.context.page.navigate('/'))
-    container = ft.Container(
-        content=ft.Column(
-            controls=[ft.Text("Protocols"), button_back]
-        )
-    )
+    button_back = ft.Button("Back", on_click=lambda: ft.context.page.navigate("/"))
+    container = ft.Container(content=ft.Column(controls=[ft.Text("Protocols"), button_back]))
     return container

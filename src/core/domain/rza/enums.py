@@ -23,9 +23,6 @@ class AssemblyType(DeviceType):
     pass
 
 
-
-
-
 class CurrentRelayType(RelayType):
     RELAY_CR_ANY = "рт"
     RELAY_CR_40 = "рт-40"

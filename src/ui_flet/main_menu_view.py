@@ -47,11 +47,11 @@ class MainMenuView(BaseViewComponent):
 
 class MainMenuContainer(ft.Container):
     def __init__(
-            self,
-            width: int = 500,
-            height: int = 200,
-            border_radius: int = 10,
-            padding: int = 5,
+        self,
+        width: int = 500,
+        height: int = 200,
+        border_radius: int = 10,
+        padding: int = 5,
     ) -> None:
         super().__init__()
         self.width = width
@@ -72,7 +72,7 @@ class MainMenuContainer(ft.Container):
         return column
 
     def create_button_name(
-            self, name_value: str, on_click_method: Callable[[ft.Event], Any]
+        self, name_value: str, on_click_method: Callable[[ft.Event], Any]
     ) -> None:
         button = ft.Button(
             content=ft.Text(
@@ -122,10 +122,7 @@ def MainMenu():
         menu_button("ПРОТОКОЛЫ", lambda: ft.context.page.navigate("/reports")),
     ]
     button_container.content = button_column
-    main_column.controls = [
-        CompanyDropdownList(company_list_model),
-        button_container
-    ]
+    main_column.controls = [CompanyDropdownList(company_list_model), button_container]
     main_container.content = main_column
     return main_container
 

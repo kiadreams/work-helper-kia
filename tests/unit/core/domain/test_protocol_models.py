@@ -136,6 +136,7 @@ def test_equals_two_values() -> None:
     value_2 = MeasuredValue(20000)
     assert value_1 == value_2, "The value_1 and value_2 must be equal"
 
+
 def test_relative_difference_two_values() -> None:
     value_1 = MeasuredValue(20003)
     value_2 = MeasuredValue(20000)
