@@ -1,5 +1,4 @@
 from typing import TYPE_CHECKING
-import random
 
 from core.domain.rza.base_rza_models import RzaDevice
 from core.domain.rza.enums import ValueQuality
@@ -55,16 +54,3 @@ class Relay(RzaDevice):
     def _calculate_average_value(list_of_value: list[float]) -> MeasuredValue:
         average_value = sum(list_of_value) / len(list_of_value)
         return MeasuredValue(value=average_value, quality=ValueQuality.REAL)
-
-    @staticmethod
-    def random_measure(
-        interval: tuple[tuple[int, int], tuple[int, int] | None],
-        step: float = 0.05,
-        accuracy: int = 100,
-    ) -> MeasuredValue:
-        interval_standart, output_interval = interval
-        start = int(interval[0] * accuracy)
-        end = int(interval[1] * accuracy)
-        step = int(step * accuracy)
-        value = random.randrange(start, end, step) / accuracy
-        return MeasuredValue(value=value, quality=ValueQuality.REAL)

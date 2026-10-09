@@ -84,9 +84,9 @@ def test_passing_contact_of_time_relay() -> None:
     relay.passing_contact_time_delays.append(3)
     relay.calculate_passing_contact_time_delay()
     assert relay.passing_contact_time_delay == 4.0, "The property return incorrect value"
-    assert (
-        len(relay.passing_contact_time_delays) == 0
-    ), "The passing_contact_time_delays list is not empty"
+    assert len(relay.passing_contact_time_delays) == 0, (
+        "The passing_contact_time_delays list is not empty"
+    )
 
 
 def test_addition_of_measure_value() -> None:

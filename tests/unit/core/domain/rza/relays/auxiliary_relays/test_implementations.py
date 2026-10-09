@@ -16,9 +16,9 @@ class TestRelayAr23:
         assert not ar_23.is_output, "Default output field should be False"
 
     def test_check_default_relay_type_field(self, ar_23: RelayAr23):
-        assert (
-            ar_23.relay_type == AuxiliaryRelayType.RELAY_AR_23
-        ), f"Relay type of ar_23 should be {AuxiliaryRelayType.RELAY_AR_23}"
+        assert ar_23.relay_type == AuxiliaryRelayType.RELAY_AR_23, (
+            f"Relay type of ar_23 should be {AuxiliaryRelayType.RELAY_AR_23}"
+        )
 
 
 class TestRelayAr220:
@@ -33,6 +33,6 @@ class TestRelayAr220:
         assert not ar_220.is_output, "Default output field should be False"
 
     def test_check_default_relay_type_field(self, ar_220: RelayAr220):
-        assert (
-            ar_220.relay_type == AuxiliaryRelayType.RELAY_AR_220
-        ), f"Relay type of ar_23 should be {AuxiliaryRelayType.RELAY_AR_220}"
+        assert ar_220.relay_type == AuxiliaryRelayType.RELAY_AR_220, (
+            f"Relay type of ar_23 should be {AuxiliaryRelayType.RELAY_AR_220}"
+        )

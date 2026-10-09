@@ -34,10 +34,6 @@ class VoltageRelayType(RelayType):
     RELAY_VR_54 = "рн-54"
 
 
-class TimeRelayType(RelayType):
-    RELAY_TR_ANY = "рв"
-
-
 class DistanceRelayType(RelayType):
     RELAY_DR_ANY = "др"
 
