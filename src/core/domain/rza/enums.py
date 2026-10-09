@@ -1,4 +1,4 @@
-from enum import Enum, IntEnum
+from enum import Enum, IntEnum, StrEnum
 
 
 class ValueQuality(IntEnum):

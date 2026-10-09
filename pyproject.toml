@@ -6,11 +6,11 @@ dependencies = [
     "aiosqlite>=0.22.1",
     "alembic==1.20.0",
     "docxtpl>=0.20.2",
-    "flet[all]>=0.86.5",
+    "flet[all]>=1.0.4",
     "pydantic-settings>=2.15.0",
     "python-docx>=1.2.0",
-    "sqlalchemy[asyncio]>=2.0.52",
-    "sqlmodel>=0.0.42",
+    "sqlalchemy[asyncio]>=2.1.4",
+    "sqlmodel>=0.0.48",
 ]
 
 [dependency-groups]
@@ -24,6 +24,7 @@ dev = [
 [tool.mypy]
 python_version = "3.14"  # Укажите вашу версию Python
 # Исключаем всю папку с миграциями (укажите её реальное имя, например alembic или migrations)
+mypy_path = "src"
 exclude = [
     "^alembic/",
 ]
@@ -50,3 +51,10 @@ target-version = ['py314']
 
 [tool.ruff]
 line-length = 100
+
+# Настройка для pytest
+[tool.pytest.ini_options]
+# Указывает pytest добавить папку src в пути импорта (sys.path)
+pythonpath = ["src"]
+# Опционально: где искать тесты
+testpaths = ["tests"]

@@ -1,9 +1,9 @@
 from typing import TYPE_CHECKING
 
-from src.core.domain.rza.assemblies import ProtectionAssembly
+from core.domain.rza.assemblies import ProtectionAssembly
 
 if TYPE_CHECKING:
-    from src.core.domain.rza.enums import MpTerminalType
+    from core.domain.rza.enums import MpTerminalType
 
 
 class MpTerminal(ProtectionAssembly):

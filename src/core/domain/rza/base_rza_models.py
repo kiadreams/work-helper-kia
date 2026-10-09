@@ -1,4 +1,10 @@
+from typing import TYPE_CHECKING
+import random
+
 from src.core.domain.rza.enums import DeviceStatus
+
+if TYPE_CHECKING:
+    from core.domain.rza.types import ValueInterval
 
 
 class RzaDevice:

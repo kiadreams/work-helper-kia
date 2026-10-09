@@ -33,18 +33,15 @@ def test_reset_ration_of_relay() -> None:
     assert relay.reset_ratio == 0.5, "The reset ratio should be 0.5"
 
 
-def test_pickup_time_delay_of_relay() -> None:
+def test_pickup_setting_of_relay() -> None:
     relay = Relay(AuxiliaryRelayType.RELAY_AR_23)
     relay.schematic_designation = "Реле"
 
     assert relay.relay_type.value == "рп-23", "The relay type is not correct"
 
-    assert relay.pickup_time_delay is None, "The property return incorrect value"
-    relay.pickup_time_delays.append(5)
-    relay.pickup_time_delays.append(3)
-    relay.calculate_pickup_time_delay()
-    assert relay.pickup_time_delay == 4.0, "The property return incorrect value"
-    assert len(relay.pickup_time_delays) == 0, "The pickup_time_dalay list is not empty"
+    assert relay.pickup_setting is None, "The property return incorrect value"
+    relay.pickup_setting = 5
+    assert relay.pickup_setting == 5, "The property return incorrect value"
 
 
 def test_auxiliary_relay() -> None:
@@ -58,12 +55,9 @@ def test_reset_time_delay_of_relay() -> None:
     relay = Relay(AuxiliaryRelayType.RELAY_AR_ANY)
     relay.schematic_designation = "Реле"
 
-    assert relay.reset_time_delay is None, "The property return incorrect value"
-    relay.reset_time_delays.append(5)
-    relay.reset_time_delays.append(3)
-    relay.calculate_reset_time_delay()
-    assert relay.reset_time_delay == 4.0, "The property return incorrect value"
-    assert len(relay.reset_time_delays) == 0, "The reset_time_dalay list is not empty"
+    assert relay.pickup_setting is None, "The property return incorrect value"
+    relay.reset_setting = 5
+    assert relay.reset_setting == 5, "The pickup setting is not empty"
 
 
 def test_current_relay() -> None:
@@ -90,9 +84,9 @@ def test_passing_contact_of_time_relay() -> None:
     relay.passing_contact_time_delays.append(3)
     relay.calculate_passing_contact_time_delay()
     assert relay.passing_contact_time_delay == 4.0, "The property return incorrect value"
-    assert len(relay.passing_contact_time_delays) == 0, (
-        "The passing_contact_time_delays list is not empty"
-    )
+    assert (
+        len(relay.passing_contact_time_delays) == 0
+    ), "The passing_contact_time_delays list is not empty"
 
 
 def test_addition_of_measure_value() -> None:

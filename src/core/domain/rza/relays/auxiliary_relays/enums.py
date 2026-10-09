@@ -1,6 +1,6 @@
 from enum import Enum
 
-from src.core.domain.rza.enums import RelayType
+from core.domain.rza.enums import RelayType
 
 
 class AuxiliaryRelayType(RelayType):

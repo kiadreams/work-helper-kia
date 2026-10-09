@@ -1,8 +1,8 @@
 from typing import TYPE_CHECKING
 
-from src.core.domain.rza.relays.relay_model import Relay
-from src.core.domain.rza.enums import ValueQuality
-from src.core.domain.rza.measure_value import MeasuredValue
+from core.domain.rza.relays.relay_model import Relay
+from core.domain.rza.enums import ValueQuality
+from core.domain.rza.measure_value import MeasuredValue
 
 if TYPE_CHECKING:
     from .enums import AuxiliaryRelayType
